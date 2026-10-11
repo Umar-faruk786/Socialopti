@@ -1,0 +1,27 @@
+# Frontend
+node_modules/
+dist/
+*.local
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python backend
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Uploaded files and local databases
+uploads/
+*.db
+*.sqlite
+*.sqlite3
+
+# IDE and operating system
+.DS_Store
+.vscode/
+.idea/

@@ -1,0 +1,275 @@
+/* ==========================================================================
+   SocialOpti — Modern Light-Themed SaaS UI/UX Stylesheet
+   ========================================================================== */
+
+/* ── Animated Gradient Text ─────────────────────────────────────────────── */
+@keyframes lp-gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.lp-gradient-text {
+  background: linear-gradient(135deg, #4338CA 0%, #635BFF 35%, #8B5CF6 70%, #3B82F6 100%);
+  background-size: 250% 250%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: lp-gradient-shift 7s ease infinite;
+}
+
+.lp-gradient-text-alt {
+  background: linear-gradient(135deg, #635BFF 0%, #8B5CF6 50%, #EC4899 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Light Ambient Backgrounds & Grids ──────────────────────────────────── */
+.lp-bg-canvas {
+  background-color: #FAFAFD;
+  background-image: 
+    radial-gradient(at 15% 15%, rgba(99, 91, 255, 0.05) 0px, transparent 45%),
+    radial-gradient(at 85% 20%, rgba(139, 92, 246, 0.05) 0px, transparent 40%),
+    radial-gradient(at 50% 80%, rgba(59, 130, 246, 0.04) 0px, transparent 50%);
+}
+
+.lp-hero-glow {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(99, 91, 255, 0.09) 0%, transparent 60%),
+    radial-gradient(circle at 10% 40%, rgba(139, 92, 246, 0.06) 0%, transparent 45%),
+    radial-gradient(circle at 90% 60%, rgba(59, 130, 246, 0.06) 0%, transparent 45%);
+}
+
+.lp-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(99, 91, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 91, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.lp-dots-pattern {
+  background-image: radial-gradient(rgba(99, 91, 255, 0.08) 1.2px, transparent 1.2px);
+  background-size: 24px 24px;
+}
+
+/* ── Modern Light Cards & Surfaces ──────────────────────────────────────── */
+.lp-card {
+  background: #FFFFFF;
+  border: 1px solid #E8EAED;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 6px 16px -4px rgba(15, 23, 42, 0.02);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lp-card-hover:hover {
+  transform: translateY(-3px);
+  border-color: #D6D9F5;
+  box-shadow: 0 16px 32px -8px rgba(99, 91, 255, 0.08), 0 4px 12px rgba(15, 23, 42, 0.03);
+}
+
+.lp-dashboard-card {
+  background: #FFFFFF;
+  border-radius: 24px;
+  border: 1px solid #E2E4F0;
+  box-shadow:
+    0 24px 48px -12px rgba(99, 91, 255, 0.12),
+    0 8px 24px -6px rgba(15, 23, 42, 0.04),
+    0 0 0 1px rgba(99, 91, 255, 0.03);
+}
+
+.lp-db-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: #F8F9FD;
+  border-bottom: 1px solid #ECEEF8;
+  user-select: none;
+}
+
+.lp-db-url {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748B;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  padding: 4px 14px;
+  border-radius: 999px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+}
+
+/* ── Navbar Link Underline Animation ─────────────────────────────────────── */
+.lp-nav-link {
+  position: relative;
+  padding-bottom: 4px;
+}
+.lp-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #635BFF, #8B5CF6);
+  border-radius: 99px;
+  transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lp-nav-link:hover::after {
+  width: 100%;
+}
+
+/* ── Floating & Micro-Animations ────────────────────────────────────────── */
+@keyframes lp-hero-float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+.lp-hero-float {
+  animation: lp-hero-float 5s ease-in-out infinite;
+}
+
+@keyframes lp-float-reverse {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(6px); }
+}
+.lp-float-reverse {
+  animation: lp-float-reverse 4.5s ease-in-out infinite;
+}
+
+@keyframes lp-live-ping {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(1.35); }
+}
+.lp-live-dot {
+  animation: lp-live-ping 1.8s ease-in-out infinite;
+}
+
+/* ── Score Ring SVG ─────────────────────────────────────────────────────── */
+.lp-ring-stroke {
+  transition: stroke-dashoffset 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
+}
+
+/* ── Activity Marquee Track ─────────────────────────────────────────────── */
+@keyframes lp-marquee {
+  0%   { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+.lp-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: lp-marquee 36s linear infinite;
+}
+.lp-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.lp-marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+/* ── Feature Highlight & Glow ───────────────────────────────────────────── */
+.lp-feature-card {
+  position: relative;
+  background: #FFFFFF;
+  border: 1px solid #E8EAED;
+  border-radius: 20px;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lp-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: #CBCDFF;
+  box-shadow: 0 16px 36px -8px rgba(99, 91, 255, 0.10), 0 2px 6px rgba(15, 23, 42, 0.02);
+}
+
+/* ── Multi-Agent Visualizer Nodes ───────────────────────────────────────── */
+@keyframes lp-pulse-node {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 91, 255, 0.25); }
+  50%       { box-shadow: 0 0 0 14px rgba(99, 91, 255, 0); }
+}
+.lp-pulse-node {
+  animation: lp-pulse-node 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes lp-agent-flow {
+  0%   { stroke-dashoffset: 24; }
+  100% { stroke-dashoffset: 0; }
+}
+.lp-flow-line {
+  stroke-dasharray: 6 6;
+  animation: lp-agent-flow 1.5s linear infinite;
+}
+
+/* ── Shimmer Button ─────────────────────────────────────────────────────── */
+.lp-shimmer-btn {
+  position: relative;
+  overflow: hidden;
+}
+.lp-shimmer-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 80%
+  );
+  transform: rotate(30deg);
+  animation: lp-shimmer 4.5s infinite linear;
+}
+@keyframes lp-shimmer {
+  0%   { transform: translateX(-100%) rotate(30deg); }
+  100% { transform: translateX(100%) rotate(30deg); }
+}
+
+/* ── Custom Range Slider ────────────────────────────────────────────────── */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: #E2E8F0;
+  border-radius: 999px;
+  height: 6px;
+  outline: none;
+}
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #635BFF;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(99, 91, 255, 0.4);
+  border: 2px solid #FFFFFF;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+input[type='range']::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  background: #5548E8;
+}
+
+/* ── Accessibility: Reduced Motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .lp-gradient-text,
+  .lp-hero-float,
+  .lp-float-reverse,
+  .lp-live-dot,
+  .lp-marquee-track,
+  .lp-pulse-node,
+  .lp-flow-line,
+  .lp-shimmer-btn::after {
+    animation: none !important;
+  }
+  .lp-ring-stroke,
+  .lp-feature-card,
+  .lp-card-hover {
+    transition: none !important;
+  }
+}
