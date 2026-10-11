@@ -311,5 +311,42 @@ export const api = {
     } catch (err) {
       return null
     }
+  },
+
+  // AI Assistant (Gemini)
+  async chatWithAssistant(params) {
+    try {
+      return await request('/assistant/chat', {
+        method: 'POST',
+        body: JSON.stringify(params)
+      })
+    } catch (err) {
+      console.warn('AI Assistant request failed, using local guidance:', err)
+      return {
+        reply: "Here are quick growth tips for your content:\n\n• **Hook Formula:** Start with a bold, curiosity-inducing statement in line 1.\n• **Formatting:** Use 1-2 sentence paragraphs for maximum mobile readability.\n• **Call to Action:** Ask an open-ended question to drive comment velocity.\n\n*(Offline mode: Backend Gemini service could not be reached.)*",
+        suggestions: [
+          "Give me 3 viral hooks for my next post",
+          "How do I improve my Instagram carousel engagement?",
+          "What are the best times to post this week?"
+        ],
+        model: "socialopti-offline-assistant",
+        timestamp: new Date().toISOString()
+      }
+    }
+  },
+
+  async getAssistantSuggestions() {
+    try {
+      return await request('/assistant/suggestions')
+    } catch (err) {
+      return {
+        suggestions: [
+          "Give me 3 viral hooks for my next post",
+          "How do I improve my Instagram carousel engagement?",
+          "What are the best times to post this week?",
+          "Write a high-converting LinkedIn caption about AI tools"
+        ]
+      }
+    }
   }
 }

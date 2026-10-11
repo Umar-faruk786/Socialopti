@@ -8,6 +8,7 @@ from app.routes.analytics import router as analytics_router
 from app.routes.history import router as history_router
 from app.routes.trends import router as trends_router
 from app.routes.calendar import router as calendar_router
+from app.routes.assistant import router as assistant_router
 
 __all__ = [
     "auth_router",
@@ -19,5 +20,6 @@ __all__ = [
     "analytics_router",
     "history_router",
     "trends_router",
-    "calendar_router"
+    "calendar_router",
+    "assistant_router"
 ]

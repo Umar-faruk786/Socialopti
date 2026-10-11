@@ -12,6 +12,7 @@ import DashboardLayout from '../components/layout/DashboardLayout'
 import Card from '../components/ui/Card'
 import StatCard from '../components/ui/StatCard'
 import { useAuth } from '../context/AuthContext'
+import { useAssistant } from '../context/AssistantContext'
 import { api } from '../services/api'
 
 // Dummy datasets aligned with reference image metrics
@@ -101,6 +102,7 @@ const aiInsightsData = [
 
 export default function Dashboard() {
   const [timeframe, setTimeframe] = useState('This Week')
+  const { openAssistant } = useAssistant()
   const { user } = useAuth()
   const [dashboardData, setDashboardData] = useState(null)
 
@@ -137,7 +139,10 @@ export default function Dashboard() {
           >
             <LuPlus className="text-base" /> Upload Content
           </Link>
-          <button className="flex items-center gap-2 bg-white dark:bg-ink-800 border border-[#E0D7FE] dark:border-ink-700 text-[#633DF2] dark:text-primary-300 text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm hover:bg-[#F4F1FF] transition">
+          <button
+            onClick={openAssistant}
+            className="flex items-center gap-2 bg-white dark:bg-ink-800 border border-[#E0D7FE] dark:border-ink-700 text-[#633DF2] dark:text-primary-300 text-xs font-bold px-4 py-2.5 rounded-xl shadow-sm hover:bg-[#F4F1FF] transition"
+          >
             <HiSparkles className="text-base text-[#633DF2]" /> AI Assistant
           </button>
         </div>
@@ -480,7 +485,10 @@ export default function Dashboard() {
             <p className="text-xs text-ink-500 dark:text-ink-300 font-medium max-w-md mt-1 leading-relaxed">
               Get smart recommendations, improve engagement and grow faster with our AI-powered insights.
             </p>
-            <button className="mt-3 bg-[#633DF2] hover:bg-[#522DE0] text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-sm transition">
+            <button
+              onClick={openAssistant}
+              className="mt-3 bg-[#633DF2] hover:bg-[#522DE0] text-white text-xs font-bold px-5 py-2.5 rounded-xl shadow-sm transition"
+            >
               Try AI Assistant
             </button>
           </div>

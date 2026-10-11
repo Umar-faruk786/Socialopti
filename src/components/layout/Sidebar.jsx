@@ -5,6 +5,7 @@ import {
   LuChevronRight, LuCrown, LuChartBar
 } from 'react-icons/lu'
 import { useAuth } from '../../context/AuthContext'
+import { useAssistant } from '../../context/AssistantContext'
 
 const menu = [
   { to: '/dashboard', label: 'Dashboard', icon: LuLayoutDashboard },
@@ -19,6 +20,7 @@ const menu = [
 export default function Sidebar({ collapsed, setCollapsed }) {
   const navigate = useNavigate()
   const { logout } = useAuth()
+  const { openAssistant } = useAssistant()
 
   return (
     <aside
@@ -84,7 +86,10 @@ export default function Sidebar({ collapsed, setCollapsed }) {
           </div>
 
           {/* Need Help Card */}
-          <div className="p-2.5 rounded-2xl bg-white dark:bg-ink-700 border border-ink-100 dark:border-ink-600 flex items-center justify-between shadow-sm cursor-pointer hover:border-ink-200 transition">
+          <div
+            onClick={openAssistant}
+            className="p-2.5 rounded-2xl bg-white dark:bg-ink-700 border border-ink-100 dark:border-ink-600 flex items-center justify-between shadow-sm cursor-pointer hover:border-ink-200 transition"
+          >
             <div className="flex items-center gap-2.5 min-w-0">
               <img
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop"

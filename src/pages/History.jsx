@@ -10,6 +10,29 @@ import { historyData as initialHistoryData } from '../data/dummyData'
 import { api } from '../services/api'
 
 const PAGE_SIZE = 6
+const DEFAULT_FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=100&h=100&fit=crop'
+
+function getBackendOrigin() {
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'
+  try {
+    const parsed = new URL(apiUrl, window.location.origin)
+    return parsed.origin
+  } catch {
+    return 'http://127.0.0.1:8000'
+  }
+}
+
+function resolveImageUrl(imagePath) {
+  if (!imagePath || typeof imagePath !== 'string') return DEFAULT_FALLBACK_IMAGE
+  const trimmed = imagePath.trim()
+  if (!trimmed || trimmed.startsWith('blob:')) return DEFAULT_FALLBACK_IMAGE
+  if (trimmed.startsWith('http://') || trimmed.startsWith('https://') || trimmed.startsWith('data:')) {
+    return trimmed
+  }
+  const backendOrigin = getBackendOrigin()
+  const cleanPath = trimmed.startsWith('/') ? trimmed : `/${trimmed}`
+  return `${backendOrigin}${cleanPath}`
+}
 
 export default function History() {
   const [rows, setRows] = useState(initialHistoryData)
@@ -110,7 +133,17 @@ export default function History() {
                 <tr key={h.id} className="border-b border-ink-50 last:border-none">
                   <td className="py-3 pr-4">
                     <div className="flex items-center gap-3">
-                      <img src={h.image} alt={h.title} className="w-10 h-10 rounded-xl2 object-cover" />
+                      <img
+                        src={resolveImageUrl(h.image)}
+                        alt={h.title}
+                        onError={(e) => {
+                          if (e.currentTarget.src !== DEFAULT_FALLBACK_IMAGE) {
+                            e.currentTarget.onerror = null
+                            e.currentTarget.src = DEFAULT_FALLBACK_IMAGE
+                          }
+                        }}
+                        className="w-10 h-10 rounded-xl2 object-cover"
+                      />
                       <span className="font-medium text-ink-800 dark:text-ink-100">{h.title}</span>
                     </div>
                   </td>

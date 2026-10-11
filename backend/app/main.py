@@ -19,6 +19,7 @@ from app.routes import (
     history_router,
     trends_router,
     calendar_router,
+    assistant_router,
 )
 
 @asynccontextmanager
@@ -64,6 +65,7 @@ app.include_router(analytics_router, prefix=api_prefix)
 app.include_router(history_router, prefix=api_prefix)
 app.include_router(trends_router, prefix=api_prefix)
 app.include_router(calendar_router, prefix=api_prefix)
+app.include_router(assistant_router, prefix=api_prefix)
 
 # Catch-all exception handler
 app.add_exception_handler(Exception, global_exception_handler)
